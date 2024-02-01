@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>主页</title>
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/views/home/css/index.css" />
+  <link rel="stylesheet" href="/assets/font/iconfont.css">
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <%- include('../components/header/header'); %>
+    <div class="first-screen screen">
+      <h1 class="title">
+        <%= title %>
+      </h1>
+      <div class="intro">
+        <h1 class="logo">Uligoe</h1>
+      </div>
+      <div class="discover">
+        <span>探索 <%= name %> 的博客世界</span>
+      </div>
+    </div>
+    <div class="second-screen screen">
+      <div class="txt">
+        <h1>采用响应式布局</h1>
+        <h2>一套代码就可以实现桌面端和移动端的适配，随时随地访问无阻。</h2>
+      </div>
+      <div class="content">
+        <div class="banner-box">
+          <%- include('../components/banner/banner', { imgList:[ { name: 'desktop' ,
+            url: '/assets/imgs/desktop_screen_shot.jpg' }, { name: 'mobile' , url: '/assets/imgs/mobile_screen_shot.jpg'
+            } ] } ) %>
+        </div>
+      </div>
+      <div class="discover">
+        <span>好像发现了宝藏</span>
+      </div>
+    </div>
+    <div class="third-screen screen">
+      <div class="txt">
+        <h1>Node + ejs + vue</h1>
+        <h2>展示的页面是利用ejs模板引擎服务端渲染的,管理平台是由vue搭建的。</h2>
+      </div>
+      <div class="content">
+        <ul class="card-list">
+
+          <li class="card-item">
+            <div class="front-end node">
+              <span class="iconfont icon-node"></span>
+              <h1>NODEJS</h1>
+            </div>
+            <a href="https://nodejs.org" target="_blank">
+              <div class="back-end node">
+                <h1>NODE</h1>
+                <p><span>单线程、非阻塞的NodeJS为博客提供了</span>坚实可靠高效的服务。</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="card-item">
+            <div class="front-end ejs">
+              <span class="iconfont icon-ejs"></span>
+              <h1>EJS</h1>
+            </div>
+            <a href="https://ejs.bootcss.com" target="_blank">
+              <div class="back-end ejs">
+                <h1>EJS</h1>
+                <p>EJS是一套简单的模板语言<span>,利用普通的js代码生成HTML页面。</span></p>
+              </div>
+            </a>
+          </li>
+          <li class="card-item">
+            <div class="front-end vue">
+              <span class="iconfont icon-vue"></span>
+              <h1>VUE</h1>
+            </div>
+            <a href="https://vuejs.org" target="_blank">
+              <div class="back-end vue">
+                <h1>VUE</h1>
+                <p><span>作为</span>当前最热门的三大框架之一<span>的vue轻量、简单、高效。</span></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="discover">
+        <span>继续向下探索</span>
+      </div>
+    </div>
+    <div class="fourth-screen screen">
+      <div class="txt">
+        <h1>拖泥带水?NO!</h1>
+        <h2>简洁高效是我一直追求的目标，拒绝凌乱杂糅和无脑抄袭。</h2>
+      </div>
+      <div class="content">
+        <ul class="grid-href">
+          <a href="/articles">
+            <li class="grid-item">
+              <span class="iconfont icon-ziliaoku"> 文章</span>
+            </li>
+          </a>
+          <a href="/guestbook">
+            <li class="grid-item">
+              <span class="iconfont icon-jurassic_message"> 留言</span>
+            </li>
+          </a>
+          <a href="/links">
+            <li class="grid-item">
+              <span class="iconfont icon-lianjie"> 链接</span>
+            </li>
+          </a>
+          <a href="/about">
+            <li class="grid-item">
+              <span class="iconfont icon-guanyu"> 关于</span>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="discover">
+        <span>回到起点</span>
+      </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+  (() => {
+    const oIntro = document.querySelector(".intro");
+    const oTitle = document.querySelector('.title');
+    document.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      if (scrollY < 400) {
+        const opacity = 170 - scrollY;
+        oTitle.style.opacity = `${opacity > 0 ? opacity : 0}%`
+      }
+      if (scrollY !== 0) {
+        oIntro.style.backgroundPosition = `calc(50% + ${scrollY / 2}px) calc(50% + ${scrollY / 2}px)`;
+      } else {
+        oIntro.style.backgroundPosition = "";
+      }
+    });
+
+
+    const oScreenList = document.querySelectorAll('.screen');
+    const oDiscoverList = document.querySelectorAll('.discover');
+    oDiscoverList.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        if (index < oScreenList.length - 1) {
+          oScreenList[index + 1].scrollIntoView({
+            behavior: "smooth",
+            inline: "nearest"
+          });
+        }
+        else {
+          oScreenList[0].scrollIntoView({
+            behavior: "smooth",
+            inline: "nearest"
+          })
+        }
+      })
+    })
+  })()
+
+  console.log(`
+       __  _____                
+      / / / / (_)___ _____  ___ 
+     / / / / / / __  / __ \\/ _ \\
+    / /_/ / / / /_/ / /_/ /  __/
+    \\____/_/_/\\__/ /\\____/\\___/ 
+             /____/           
+
+    Welcome to <%= name %>'s UligoeBlog :)
+  `);
+
+
+</script>

@@ -1,0 +1,217 @@
+.main {
+  width: 100%;
+  margin-top: 18px;
+}
+.main .query-panel {
+  width: 780px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 6px;
+  height: 48px;
+  line-height: 48px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 18px;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+.main .query-panel .search-box {
+  position: relative;
+}
+.main .query-panel .search-box .search-input {
+  border: 1px solid #e3e3e3;
+  outline: none;
+  height: 24px;
+  border-radius: 6px;
+  padding: 0 32px 0 10px;
+}
+.main .query-panel .search-box .search-btn {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+.main .article-list {
+  width: 816px;
+  margin: 0 auto;
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  row-gap: 18px;
+}
+.main .article-list .empty {
+  grid-column: span 2;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  color: #203951;
+}
+.main .article-list .empty a {
+  color: #99bad4;
+}
+.main .article-list .article-item {
+  height: 140px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 6px;
+  padding: 18px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.main .article-list .article-item:hover::before {
+  background: rgba(255, 255, 255, 0.92);
+}
+.main .article-list .article-item:hover {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  transform: translateY(-3px);
+}
+.main .article-list .article-item h1 {
+  font-size: 1.2rem;
+  color: #203951;
+}
+.main .article-list .article-item h2 {
+  margin-top: 12px;
+  color: #203951b7;
+  text-indent: 2em;
+  font-size: 0.9rem;
+  height: 85px;
+  overflow: hidden;
+  /*超出部分隐藏*/
+  text-overflow: ellipsis;
+  /*文字超出部分以省略号显示*/
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+}
+.main .article-list .article-item .info {
+  position: absolute;
+  bottom: 18px;
+  font-size: 0.8rem;
+  color: #203951;
+}
+.main .article-list .article-item .info span {
+  margin-right: 12px;
+}
+.main .article-list .article-item::before {
+  content: "";
+  background: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+.main .pagination {
+  width: 816px;
+  height: 38px;
+  margin: 18px auto;
+  position: relative;
+}
+.main .pagination ul {
+  display: flex;
+  font-size: 0.9rem;
+  color: #203951;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.main .pagination ul li {
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 13px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.main .pagination ul li.page-input input {
+  width: 10px;
+  font-size: 0.9rem;
+  outline: none;
+  border: none;
+}
+.main .pagination ul li.prev-page {
+  width: 45px;
+}
+.main .pagination ul li.next-page {
+  width: 45px;
+}
+.main .pagination ul li.active {
+  background: #99bad4;
+  color: #fff;
+}
+@media screen and (min-width: 1600px) {
+  .main .query-panel {
+    width: 1464px;
+  }
+  .main .article-list {
+    width: 1500px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 960px) {
+  .main {
+    margin-top: 0;
+  }
+  .main .query-panel {
+    position: sticky;
+    top: 50px;
+    width: auto;
+    border-radius: 0;
+  }
+  .main .article-list {
+    width: calc(100% - 40px);
+    padding: 0 20px;
+  }
+  .main .pagination {
+    width: calc(100% - 40px);
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main .query-panel {
+    padding: 0;
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    background: none;
+  }
+  .main .query-panel .search-box {
+    padding: 0;
+    height: 38px;
+    position: relative;
+    background: none;
+  }
+  .main .query-panel .search-box .search-input {
+    width: calc(100% - 44px);
+    height: 38px;
+    border-radius: 0;
+  }
+  .main .query-panel .search-box .search-btn {
+    top: 0px;
+  }
+  .main .query-panel .show-all {
+    display: none;
+  }
+  .main .article-list {
+    grid-template-columns: 1fr;
+  }
+  .main .article-list .article-item .info {
+    font-size: 0.7rem;
+  }
+  .main .pagination ul li.page-input {
+    display: none;
+  }
+  .main .pagination ul li.go-btn {
+    display: none;
+  }
+}

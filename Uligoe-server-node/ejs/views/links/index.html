@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链接库</title>
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/views/links/css/index.css">
+    <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <%- include('../components/header/header'); %>
+    <%- include('../components/top/top.ejs'); %>
+        <div class="title">
+            <h1>链接库</h1>
+            <h2>孤帆远影碧空尽，惟见长江天际流。</h2>
+        </div>
+        <div class="main">
+            <div class="links-panel">
+                <% linkList.forEach(item => { %>
+                    <div class="list"> 			
+                        <h1><%= item.title %></h1> 			
+                        <ul> 
+                            <% item.list.forEach(link => { %>
+                                <li><a target="_blank" href="<%= link.url %>"><%= link.name %> </a></li>  
+                            <% })%>
+                        </ul> 		
+                    </div>
+                <% }) %> 
+            </div>
+        </div>
+</body>
+
+</html>

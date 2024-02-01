@@ -1,0 +1,28 @@
+{
+  "name": "uligoe-server-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.3.0",
+    "bluebird": "^3.7.2",
+    "ejs": "^3.1.8",
+    "js-md5": "^0.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-log4": "^2.3.2",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
+    "koa-views": "^8.0.0",
+    "moment": "^2.29.3",
+    "mysql2": "^2.3.3",
+    "sha256": "^0.2.0"
+  }
+}

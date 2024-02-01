@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章库</title>
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/views/articles/css/index.css">
+    <link rel="stylesheet" href="/assets/font/iconfont.css">
+    <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <%- include('../components/header/header'); %>
+        <%- include('../components/top/top.ejs'); %>
+            <div class="title">
+                <h1>文章库</h1>
+                <h2>鸟欲高飞先振翅，人求上进先读书。</h2>
+            </div>
+            <div class="main">
+                <div class="query-panel">
+                    <a class="show-all" href="/articles">全部</a>
+                    <div class="search-box">
+                        <input class="search-input" type="text" placeholder="输入关键词搜索">
+                        <span class="search-btn iconfont icon-sousuo"></span>
+                    </div>
+                </div>
+                <div class="article-list">
+                    <% if(articleList.length > 0) { %>
+                        <% articleList.forEach((article,index)=> { %>
+                            <%- include('./components/articleItem.ejs', {article, index}) %>
+                        <% }); %>
+                    <% } %>
+                    <% if(articleList.length ===  0) { %>
+                        <div class="empty"><h1>没有搜索到内容哦，<a href="/articles">查看全部</a></h1></div>
+                    <% } %>
+                </div>
+                <div class="pagination">
+                    <%- include('./components/pagination.ejs', {total, pageNo, pageSize, keyword, pageTotal: total / pageSize}) %> 
+                </div>
+            </div>
+</body>
+
+</html>
+
+<script>
+    function getUrlParam(name) {
+        const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
+        const r = window.location.search.substr(1).match(reg);
+        if (r) return decodeURI(r[2]);
+        return null;
+    }
+
+    (() => {
+
+
+        let keyword = getUrlParam('keyword') || '';
+        let pageSize = getUrlParam('pageSize') || 10;
+        let pageNo = getUrlParam('pageNo') || 1;
+
+        // 搜索事件相关
+        const oSearchInput = document.querySelector('.search-input');
+        const oSearchBtn = document.querySelector('.search-btn');
+        oSearchInput.value = keyword;
+        oSearchInput.addEventListener('input', () => {
+            keyword = oSearchInput.value;
+        })
+        oSearchInput.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+                if (keyword !== '') {
+                    window.location.href = `/articles?keyword=${keyword}`
+                }
+                else {
+                    window.location.href = `/articles`
+                }
+            }
+        })
+        oSearchBtn.addEventListener('click', () => {
+            if (keyword !== '') {
+                window.location.href = `/articles?keyword=${keyword}`
+            }
+            else {
+                window.location.href = `/articles`
+            }
+        })
+
+
+
+    })()
+</script>

@@ -1,0 +1,82 @@
+<ul>
+    <li class="prev-page">上一页</li>
+    <% if(parseInt(pageNo) === pageTotal && pageTotal >= 3) { %>
+        <a class="page-btn"><li class="page-item"><%= pageNo - 2 %></li></a>
+    <% } %> 
+    <% if(parseInt(pageNo) > 1) { %>
+        <a class="page-btn"><li class="page-item"><%= pageNo - 1 %></li></a>
+    <% } %> 
+    <a class="page-btn"><li class="page-item"><%= pageNo%></li></a>
+    <% if(parseInt(pageNo) < pageTotal) { %>
+        <a class="page-btn"><li class="page-item"><%= parseInt(pageNo) + 1 %></li></a>
+    <% } %> 
+    <% if(parseInt(pageNo) === 1 && pageTotal >= 3) { %>
+        <a class="page-btn"><li class="page-item"><%= parseInt(pageNo) + 2 %></li></a>
+    <% } %> 
+    <li class="next-page">下一页</li>
+    <li class="page-input"><input type="text"></li>
+    <li class="go-btn">Go</li>
+</ul>
+
+<script>
+    (() => {
+        const total = '<%= total %>';
+        const pageNo = '<%= pageNo %>';
+        const pageSize = '<%= pageSize %>';
+        const keyword = '<%= keyword %>';
+        const pageTotal = total / pageSize;
+
+        const oPageItemList = document.querySelectorAll('.page-item');
+        oPageItemList.forEach((item, index) => {
+            if(item.innerText === pageNo){
+                item.classList.add('active')
+            }
+        })
+
+        const oPageBtnList = document.querySelectorAll('.page-btn');
+        oPageBtnList.forEach(item => {
+            item.addEventListener('click', () => {
+                const toPage = item.firstChild.innerText;
+                window.location.href = `/articles?pageSize=${pageSize}&pageNo=${toPage}${keyword==='' ? '' : '&keyword='+ keyword}`
+            })
+        })
+
+        const oPrevPageBtn = document.querySelector('.prev-page');
+        const oNextPageBtn = document.querySelector('.next-page');
+
+        oPrevPageBtn.addEventListener('click', () => {
+            if(parseInt(pageNo) > 1){
+                window.location.href = `/articles?pageSize=${pageSize}&pageNo=${pageNo-1}${keyword==='' ? '' : '&keyword='+ keyword}`
+            }
+        })
+
+        oNextPageBtn.addEventListener('click', () => {
+            const lastPage = (pageTotal)
+            if(parseInt(pageNo) < lastPage){
+                window.location.href = `/articles?pageSize=${pageSize}&pageNo=${parseInt(pageNo) + 1}${keyword==='' ? '' : '&keyword='+ keyword}`
+            }
+        })
+
+
+        const oGoBtn = document.querySelector('.go-btn');
+        const oPageInput = document.querySelector('.page-input').firstChild;
+        oPageInput.value = pageNo;
+
+        oPageInput.addEventListener('keyup', (event) => {
+            if(event.keyCode === 13){
+                hrefToPage();
+            }
+        })
+        oGoBtn.addEventListener('click', hrefToPage)
+
+        function hrefToPage(){
+            const toPage = oPageInput.value;
+            if(toPage >= 1 && toPage < pageTotal){
+                window.location.href = `/articles?pageSize=${pageSize}&pageNo=${toPage}${keyword==='' ? '' : '&keyword='+ keyword}`
+            }
+            else{
+                oPageInput.value = pageNo;
+            }
+        }
+    })()
+</script>

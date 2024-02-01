@@ -1,0 +1,1 @@
+import{r as t}from"./index-60949b5a.js";const l=e=>t.post("/article/upload",e),s=e=>t.post("/article/edit",e),a=(e,r="delete")=>t.get(`/article/recycle/${e}?mode=${r}`),i=e=>t.get(`/article/delete/${e}`),o=e=>t.post("/article",e);export{s as a,o as b,a as c,i as d,l as r};

@@ -1,0 +1,140 @@
+.title .comment-btn {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 5vh;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  background: #498abb;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.title .comment-btn:hover {
+  background: #629bc7;
+  box-shadow: rgba(255, 255, 255, 0.5) 0 0 14px;
+}
+.main {
+  width: 1440px;
+  margin: 0 auto;
+  position: relative;
+}
+.main .comment-item {
+  background: #fff;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  color: #203951;
+}
+.main .comment-item .item-title {
+  padding: 18px;
+}
+.main .comment-item .item-title .comment-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.main .comment-item .item-title .time {
+  float: right;
+  margin-top: 12px;
+  font-size: 0.8rem;
+}
+.main .comment-item .content {
+  padding: 0 18px 22px 18px;
+  word-wrap: break-word;
+}
+.dialog {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  transition: all 0.4s ease;
+  display: none;
+  opacity: 0;
+}
+.dialog .dialog-panel {
+  width: 500px;
+  margin: 22vh auto;
+  background: #fff;
+  border-radius: 8px;
+}
+.dialog .dialog-panel .dialog-title {
+  height: 45px;
+  line-height: 45px;
+  padding: 0 24px;
+  border-bottom: #E4E7ED 1px solid;
+}
+.dialog .dialog-panel .dialog-title span {
+  color: #203951;
+}
+.dialog .dialog-panel .dialog-title a {
+  float: right;
+  color: #909399;
+  margin-top: 2px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.dialog .dialog-panel .dialog-content {
+  padding: 16px 24px;
+  position: relative;
+}
+.dialog .dialog-panel .dialog-content form {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.dialog .dialog-panel .dialog-content form .form-item {
+  border: 1px solid #DCDFE6;
+  border-radius: 6px;
+  height: 28px;
+  margin-bottom: 10px;
+  outline: none;
+  padding: 0 12px;
+  font-size: 0.9rem;
+}
+.dialog .dialog-panel .dialog-content form .comment {
+  padding: 6px 12px;
+  height: 70px;
+  resize: none;
+  font-family: "Microsoft YaHei";
+}
+.dialog .dialog-panel .dialog-content .upload-btn {
+  outline: none;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 0.9rem;
+  background-color: #498abb;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.dialog .dialog-panel .dialog-content .upload-btn:hover {
+  background-color: #2a74ad;
+}
+@media screen and (max-width: 1500px) {
+  .main {
+    width: 960px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .main {
+    width: 768px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main {
+    width: 95vw;
+  }
+  .dialog .dialog-panel {
+    width: 95vw;
+  }
+}

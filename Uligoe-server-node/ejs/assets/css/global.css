@@ -1,0 +1,22 @@
+body {
+  background: #f0f0f0;
+  font-display: auto;
+  
+}
+.title {
+  background: #99bad4;
+  height: 35vh;
+  text-align: center;
+  position: relative;
+}
+.title h1 {
+  color: #203951;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  padding-top: 14vh;
+}
+.title h2 {
+  color: #203951b7;
+  font-size: 1rem;
+  margin-top: 12px;
+}

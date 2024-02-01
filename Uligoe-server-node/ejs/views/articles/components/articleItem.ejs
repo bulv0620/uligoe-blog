@@ -1,0 +1,22 @@
+<a href="/articles/<%= article.id %>">
+    <div class="article-item article-item-<%= index %>">
+        <h1><%= article.title %></h1>
+        <h2><%= article.description %></h2>
+        <div class="info">
+            <span>时间:<%= article.publish_time %></span>
+            <span>浏览:<%= article.visit_count %></span>
+            <span>分类:<%= article.category %></span>
+        </div>
+    </div>
+</a>
+
+<script>
+    (() => {
+        const oArticleItem = document.querySelector('.article-item-<%= index %>');
+        oArticleItem.style.backgroundImage = `url('<%= article.bg_img %>')`
+    })()
+</script>
+
+<style>
+
+</style>

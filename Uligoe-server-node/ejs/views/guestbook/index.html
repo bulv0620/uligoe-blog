@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/views/guestbook/css/index.css">
+    <link rel="stylesheet" href="/assets/font/iconfont.css">
+    <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <%- include('../components/header/header'); %>
+    <%- include('../components/top/top.ejs'); %>
+        <div class="title">
+            <h1>留言板</h1>
+            <h2>同声自相应，同心自相知。</h2>
+            <a class="btn comment-btn">我要留言</a>
+        </div>
+        <div class="main">
+            <% commentList.forEach(comment => { %>
+                <div class="comment-item">
+                    <div class="item-title">
+                        <img class="comment-avatar" src="<%= comment.avatar %>" alt="">
+                        <span class="user"><%= comment.user %></span>
+                        <span class="time"><%= comment.publish_time %></span>
+                    </div>
+                    <p class="content"><%= comment.content %></p>
+                </div>
+            <% }) %> 
+        </div>
+
+        <div class="dialog">
+            <div class="dialog-panel">
+                <div class="dialog-title">
+                    <span></span>
+                    <a class="iconfont icon-chucuo" id="close-dialog"></a>
+                </div>
+                <div class="dialog-content">
+                    <form>
+                        <input class="form-item user" id="user" type="text" placeholder="输入你的昵称">
+                        <input class="form-item email" id="email" type="text" placeholder="输入你的邮箱">
+                        <textarea class="form-item comment" id="comment" type="text" placeholder="输入评论内容"></textarea>
+                    </form>
+                    <button class="upload-btn">发布</button>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="/assets/js/Waterfall.js"></script>
+<script src="/assets/js/Toast.js"></script>
+<script>
+window.onload = () => {
+    const width = document.documentElement.clientWidth;
+    let colums = renderWaterfall(width, -1);
+
+    window.addEventListener('resize', () => {
+        const width = document.documentElement.clientWidth;
+        colums = renderWaterfall(width, colums);
+    })
+
+    function renderWaterfall(width, oldColums){
+        let colums = oldColums;
+        let isChanged = false;
+        if(width >= 1500 && colums !== 4){
+            colums = 4;
+            isChanged = true;
+        }
+        else if (width > 960 && width < 1500 && colums !== 3){
+            colums = 3;
+            isChanged = true;
+        }
+        else if(width >= 768 && width <= 960 && colums !== 2){
+            colums = 2;
+            isChanged = true;
+        }
+        else if(width < 768 ){
+            colums = 1;
+            isChanged = true;
+        }
+
+        if(isChanged){
+            new Waterfall({
+                $el: document.querySelector(".main"),
+                col: colums,
+                gap: 10
+            })
+        }
+        return colums;
+    }
+
+    const oDialog = document.querySelector('.dialog');
+    const oDialogBtn = document.querySelector('.comment-btn');
+    const oCloseDialogBtn = document.querySelector('#close-dialog');
+    oDialogBtn.addEventListener('click', () => {
+        oDialog.style.display = 'block';
+        setTimeout(() => {
+            oDialog.style.opacity = 1;  
+        })
+    })
+    oDialog.addEventListener('click', closeDialog)
+    oCloseDialogBtn.addEventListener('click', closeDialog)
+    function closeDialog() {
+        oDialog.style.opacity = 0;  
+        setTimeout(() => {
+            oDialog.style.display = 'none';
+        }, 390)
+    }
+
+    const oDialogPanel = document.querySelector('.dialog-panel');
+    oDialogPanel.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+
+    const oUploadBtn = document.querySelector('.upload-btn');
+    const oUserInput = document.querySelector('#user');
+    const oEmailInput = document.querySelector('#email');
+    const oCommentInput = document.querySelector('#comment');
+    oUploadBtn.addEventListener('click', () => {
+        const user = oUserInput.value;
+        const email = oEmailInput.value;
+        const content = oCommentInput.value;
+        if(user === ''){
+            Toast('昵称不能为空');
+        }
+        else if(email === ''){
+            Toast('邮箱不能为空');
+        }
+        else if(content === ''){
+            Toast('评论内容不能为空');
+        }
+
+        else{
+            oUploadBtn.disabled = true;
+            const xhr = new XMLHttpRequest();
+            xhr.open('post', '/api/comment/upload');
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(`user=${user}&email=${email}&content=${content}`);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        const res = JSON.parse(xhr.responseText);
+                        if(res.code === 0){
+                            oUploadBtn.disabled = false;
+                            Toast('请求失败,' + res.message);
+                        }
+                        else{
+                            Toast('发布成功!');
+                            closeDialog();
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 300);
+                        }
+                    }    
+                }
+            }
+        }
+    })
+}
+</script>
+</html>

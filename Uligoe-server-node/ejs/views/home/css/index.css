@@ -1,0 +1,273 @@
+.screen {
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.screen .txt {
+  padding: 14vh 50px 65px 50px;
+}
+.screen .txt h1 {
+  font-size: 2rem;
+  color: white;
+}
+.screen .txt h2 {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.screen .content {
+  width: 100%;
+}
+.screen .content .banner-box {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.screen .content .card-list {
+  display: flex;
+  justify-content: center;
+  padding-top: 10vh;
+}
+.screen .content .card-list .card-item {
+  height: 150px;
+  width: 200px;
+  margin: 30px 50px;
+  position: relative;
+}
+.screen .content .card-list .card-item:hover .front-end {
+  transform: translateY(-75px) rotateX(-90deg);
+  opacity: 0;
+}
+.screen .content .card-list .card-item:hover .back-end {
+  transform: translateY(0) rotateX(0);
+  opacity: 1;
+}
+.screen .content .card-list .card-item .front-end {
+  background: #fff;
+  height: 100%;
+  padding: 0 18px;
+  transition: all 0.4s ease;
+  opacity: 1;
+}
+.screen .content .card-list .card-item .front-end.node {
+  color: #81bd01;
+}
+.screen .content .card-list .card-item .front-end.ejs {
+  color: #dac22c;
+}
+.screen .content .card-list .card-item .front-end.vue {
+  color: #42b884;
+}
+.screen .content .card-list .card-item .front-end span {
+  display: block;
+  font-size: 4rem;
+  padding-top: 28px;
+}
+.screen .content .card-list .card-item .front-end h1 {
+  margin-top: 8px;
+  font-weight: bold;
+}
+.screen .content .card-list .card-item .back-end {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  color: #fff;
+  padding: 0 18px;
+  transform: translateY(75px) rotateX(90deg);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.screen .content .card-list .card-item .back-end h1 {
+  font-size: 1.8rem;
+  margin-top: 28px;
+}
+.screen .content .card-list .card-item .back-end p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 16px;
+  font-size: 0.9rem;
+}
+.screen .content .card-list .card-item .back-end.node {
+  background-color: #81bd01;
+}
+.screen .content .card-list .card-item .back-end.ejs {
+  background-color: #dac22c;
+}
+.screen .content .card-list .card-item .back-end.vue {
+  background-color: #42b884;
+}
+.screen .content .grid-href {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 12vh 8vw;
+  justify-items: center;
+}
+.screen .content .grid-href .grid-item {
+  border-radius: 8px;
+  width: 200px;
+  height: 140px;
+  background: #fff;
+  color: #5587a4;
+  line-height: 140px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 5px 15px -5px #a0a0a070;
+}
+.screen .content .grid-href .grid-item span {
+  transition: all 0.4s ease;
+  display: block;
+  font-size: 2.2rem;
+}
+.screen .content .grid-href .grid-item:hover span {
+  transform: scale(1.3);
+}
+.screen .content .grid-href .grid-item:hover {
+  color: #fff;
+}
+.screen .content .grid-href .grid-item:hover::before {
+  top: -50%;
+  left: -50%;
+}
+.screen .content .grid-href .grid-item::before {
+  content: "";
+  background: #85cfe4;
+  color: #fff;
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border-radius: 100%;
+  top: 120%;
+  left: -120%;
+  transition: all 0.4s ease;
+}
+.screen .discover {
+  position: absolute;
+  left: 50%;
+  bottom: 8vh;
+  transform: translate(-50%, 0);
+  transition: 0.4s;
+  color: #c1cedc;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.screen .discover:hover {
+  transform: translate(-50%, -30%);
+}
+.first-screen .title {
+  position: fixed;
+  left: 50%;
+  top: 16vh;
+  font-size: 3.5rem;
+  transform: translateX(-50%);
+  color: #404762;
+  opacity: 100%;
+  text-align: left;
+}
+.first-screen .intro {
+  background-image: url("/assets/imgs/bg.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 100%;
+  width: 100%;
+  font: 900 18rem "";
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.first-screen .intro .logo {
+  margin-top: 34vh;
+  cursor: default;
+}
+.first-screen .intro::before {
+  content: "";
+  background-size: cover;
+  background-image: inherit;
+  background-position: 50% 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+.second-screen {
+  background: #5587a4;
+}
+.third-screen {
+  background: #3f4661;
+}
+.fourth-screen {
+  background: #4f749a;
+}
+@media screen and (max-width: 960px) {
+  .first-screen .title {
+    font-size: 3rem;
+  }
+  .first-screen .intro {
+    font: 900 10rem "";
+  }
+  .first-screen .intro .logo {
+    margin-top: 50vh;
+  }
+  .screen .content .grid-href {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 32px;
+    padding: 6vh 12vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .first-screen .title {
+    font-size: 3rem;
+  }
+  .first-screen .intro {
+    font: 900 5rem "";
+  }
+  .first-screen .intro .logo {
+    margin-top: 50vh;
+  }
+  .screen .txt {
+    padding-top: 20vh;
+    padding-bottom: 32px;
+  }
+  .screen .content .banner-box {
+    height: 260px;
+  }
+  .screen .content .card-list {
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+  }
+  .screen .content .card-list .card-item {
+    width: 130px;
+    height: 130px;
+    padding: 0;
+    margin: 10px;
+  }
+  .screen .content .card-list .card-item .front-end {
+    background: none;
+  }
+  .screen .content .card-list .card-item .back-end h1 {
+    margin-top: 18px;
+  }
+  .screen .content .card-list .card-item .back-end p span {
+    display: none;
+  }
+  .screen .content .grid-href {
+    padding: 0 12vw;
+    row-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .screen .content .grid-href .grid-item {
+    width: 120px;
+    height: 80px;
+    line-height: 80px;
+  }
+  .screen .content .grid-href .grid-item span {
+    font-size: 1.4rem;
+  }
+}
